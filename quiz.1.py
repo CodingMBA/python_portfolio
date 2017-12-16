@@ -2,6 +2,12 @@ import os
 import time
 
 def initiate_game():
+    """
+    This function starts the game with a welcome message and invokes the core
+    gameplay function, play_game
+    :inputs: none
+    :outputs: prints welcome message.
+    """
     unused_variable = os.system("clear")
     prompt("Welcome to the Python Challenge!")
     prompt("See if you can fill in the blanks for each question when prompted.")
@@ -20,13 +26,21 @@ def prompt(message):
     print "=> " + message
 
 def play_game(index, answers, questions, qnum):
+    """
+    This function manages the gameplay duration and initiates core gameplay functions.
+    While loop initiates the questions and updates key variables.  Ends once all questions
+    are answered correctly.  Prints final results and congratulates user.
+    :inputs: many key variables initialized outside of the function definitions are needed
+    for the core gameplay, including the index, answers list, questions list, and qnum variables.
+    :outputs: the primary outputs from this function itself are final print of questions and congrats.
+    """
     set_questions(questions, answers)
     while index < len(answers):
         ask_and_answer(questions, qnum)
         questions[index] = questions[index].replace("_____",answers[index])
         qnum += 1
         index += 1
-# Question and answer loop ends here.
+
     for question in questions:
         print question
     print "\n"
@@ -126,7 +140,7 @@ def close_game():
         
 
 # PROGRAM BEGINS HERE
-# Outer loop allows user to play multiple games without restarting the program.
+# While loop allows user to play multiple games without restarting the program.
 while True:
     easy_questions = [
         "1. Some number of characters surrounded by quotes is called a _____.",
